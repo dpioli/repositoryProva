@@ -27,9 +27,7 @@ public class Configuratore extends Utente {
 		}//VOGLIO CHE DUE METODI DISTINTI GESTISCANO I DUE FLUSSI
 		
 		public void clientToServer(Socket client) {
-			try (
-					PrintWriter out = new PrintWriter(client.getOutputStream());)
-			{
+			try (PrintWriter out = new PrintWriter(client.getOutputStream())) {
 
 				BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 				

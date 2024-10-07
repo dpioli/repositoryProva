@@ -15,9 +15,8 @@ public class ServerCentroSportivo {
 					System.out.println("In attesa che un client si colleghi ...");
 					Socket cliente = server.accept();	
 					ProtocolloServer protocollo = new ProtocolloServer(cliente);
-					Thread clientThread = new Thread(protocollo);
-					//protocol.run();
-					clientThread.start();
+					protocollo.run();
+					
 				}
 			}catch(Exception ex){
 				ex.printStackTrace();

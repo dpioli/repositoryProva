@@ -14,6 +14,7 @@ public class Fruitore extends Utente{
 			int port = 1234;
 			
 			try {
+				
 				Socket utente = new Socket(host, port); //--> ho creato automaticamente una connessione con il server
 				System.out.println("Server connesso : /n ");
 				
@@ -28,9 +29,7 @@ public class Fruitore extends Utente{
 		
 		@Override
 		public void clientToServer(Socket client) {
-			try (
-					PrintWriter out = new PrintWriter(client.getOutputStream());)
-			{
+			try (PrintWriter out = new PrintWriter(client.getOutputStream())) {
 
 				BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 				
@@ -46,9 +45,7 @@ public class Fruitore extends Utente{
 		}
 		@Override
 		public void serverToClient(Socket client) {
-			try (
-					BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));	)
-			{
+			try (BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()))) {
 				
 				System.out.println("Server connesso : /n ");
 				String request;

@@ -24,6 +24,7 @@ public class ProtocolloServer implements Runnable {
 	public void inviaMessaggio(String msg) {
 			out.println(msg);
 	}
+	
 	public void inviaMessaggioATutti(String msg) {
 		for(ProtocolloServer b : listaUtenti)
 			out.println(msg);
@@ -32,21 +33,20 @@ public class ProtocolloServer implements Runnable {
 	@Override
 	public void run() {
 		try {
-		out = new PrintWriter(cliente.getOutputStream(), true);
-		
-		in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-
-		System.out.printf("Utente connesso : %s , %s\n", cliente.getInetAddress()
+			out = new PrintWriter(cliente.getOutputStream(), true);
+			in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+			System.out.printf("Utente connesso : %s , %s\n", cliente.getInetAddress()
 				, cliente.getPort());
 		
-		String richiesta;
+			String richiesta;
 		
 		while((richiesta = in.readLine()) != null){	
 			System.out.printf("richiesta : %s\n", richiesta);
 			//cose da fare
 			//
 		}
-		}catch ( Exception exc) {
+		
+		} catch ( Exception exc) {
 			
 		}
 	}

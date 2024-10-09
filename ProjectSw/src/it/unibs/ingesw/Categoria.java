@@ -1,21 +1,15 @@
 package it.unibs.ingesw;
 
-import java.util.ArrayList;
+public abstract class Categoria {
+	
+    protected String nome;
 
-public class Categoria {
-	public String nome;
-	public String campoCaratteristico;
-	public ArrayList<Categoria> categorie = new ArrayList<>();
-	
-	public Categoria(String nome, String campoCaratteristico) {
-		this.nome = nome;
-		this.campoCaratteristico = "0";
-	}
-	
-	public void aggiungiCategoria(Categoria nuova) {
-		//bla bla controlli e cose
-		categorie.add(nuova);
-	}
-	
+    public Categoria(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 	
 }

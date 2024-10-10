@@ -15,6 +15,7 @@ public class Categoria {
 	public void aggiungiCategoria(Categoria nuova) {
 		//bla bla controlli e cose
 		categorie.add(nuova);
+		
 	}
 	
 	

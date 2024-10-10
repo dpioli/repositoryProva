@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurazione>
-   <comprensorio nome="Brescia Nord">
-      <comune nome="Gardone V.T."/>
-      <comune nome="Sarezzo"/>
-   </comprensorio>
-   <comprensorio nome="Brescia Sud">
-      <comune nome="Castegnato"/>
-      <comune nome="Rezzato"/>
-   </comprensorio>
+	<comprensorio nome="Brescia Nord">
+		<comune nome="Gardone V.T."/>
+		<comune nome="Sarezzo"/>
+	</comprensorio>
+	<comprensorio nome="Brescia Sud">
+		<comune nome="Castegnato"/>
+		<comune nome="Rezzato"/>
+	</comprensorio>
 </configurazione>

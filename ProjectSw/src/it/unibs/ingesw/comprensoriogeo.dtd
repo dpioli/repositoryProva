@@ -1,0 +1,5 @@
+<!ELEMENT configurazione (comprensorio+)>
+<!ELEMENT comprensorio (comune+)>
+<!ELEMENT comune EMPTY>
+<!ATTLIST comprensorio nome CDATA #REQUIRED>
+<!ATTLIST comune nome CDATA #REQUIRED>

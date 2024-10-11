@@ -11,5 +11,5 @@ public abstract class Categoria {
     public String getNome() {
         return nome;
     }
-	
+    
 }

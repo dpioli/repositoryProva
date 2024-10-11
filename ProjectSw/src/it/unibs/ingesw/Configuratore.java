@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Configuratore extends Utente {
 
@@ -63,5 +61,17 @@ public class Configuratore extends Utente {
 			// TODO Auto-generated method stub
 			
 		}
+
+	/*	    public void modificaConfigurazione(String xmlPath) throws SAXException, IOException, ParserConfigurationException {
+		        ConfigurazioneComprensori config = new ConfigurazioneComprensori();
+		        Document document = (Document) config.costruisciDocumento(xmlPath);
+		    //    config.setDocument(document);
+
+		        // Perform modifications on the document using config methods
+		        config.aggiungiComprensorio("Nuovo Comprensorio");
+		        config.rimuoviComprensorio("Vecchio Comprensorio");
+
+		        // Save the modified document (implementation not shown here)
+		    }*/
 
 }

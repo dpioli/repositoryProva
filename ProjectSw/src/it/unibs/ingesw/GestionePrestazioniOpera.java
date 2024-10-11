@@ -1,4 +1,7 @@
 package it.unibs.ingesw;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class GestionePrestazioniOpera {
@@ -6,7 +9,7 @@ public class GestionePrestazioniOpera {
     private Set<String> nomiCategorieFoglia;
     private Map<String, Comprensorio> comprensori;
     private Map<String, Map<String, Double>> fattoriConversione;
-
+   
     public GestionePrestazioniOpera() {
         gerarchie = new HashMap<>();
         nomiCategorieFoglia = new HashSet<>();
@@ -85,5 +88,49 @@ public class GestionePrestazioniOpera {
         return null;  // Fattore di conversione non disponibile
     }
 
-    // Aggiungi altri metodi e funzionalità secondo necessità
+    // Metodo per salvare le gerarchie su un file
+    public void salvaGerarchieSuFile(String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Gerarchia gerarchia : gerarchie.values()) {
+                writer.write("Radice: " + gerarchia.getNomeRadice() + "\n");
+                salvaCategoria(writer, gerarchia.getRadice(), 1);
+                writer.write("\n");
+            }
+            System.out.println("Salvataggio delle gerarchie completato.");
+        } catch (IOException e) {
+            System.out.println("Errore durante il salvataggio delle gerarchie: " + e.getMessage());
+        }
+    }
+
+    // Metodo ricorsivo per salvare la struttura delle categorie
+    private void salvaCategoria(BufferedWriter writer, Categoria categoria, int livello) throws IOException {
+        String indentazione = "  ".repeat(livello); // Indenta per rappresentare la gerarchia
+        writer.write(indentazione + "Categoria: " + categoria.getNome() + "\n");
+
+        if (categoria instanceof CategoriaNonFoglia) {
+            CategoriaNonFoglia nonFoglia = (CategoriaNonFoglia) categoria;
+            writer.write(indentazione + "Campo caratteristico: " + nonFoglia.getNomeCampo() + "\n");
+            for (Map.Entry<String, Categoria> entry : nonFoglia.getSottoCategorie().entrySet()) {
+                writer.write(indentazione + "Valore: " + entry.getKey() + "\n");
+                salvaCategoria(writer, entry.getValue(), livello + 1);
+            }
+        }
+    }
+
+    // Metodo per salvare gli scambi di prestazioni d'opera su un file
+    public void salvaScambiSuFile(String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Map.Entry<String, Map<String, Double>> entry1 : fattoriConversione.entrySet()) {
+                String categoria1 = entry1.getKey();
+                for (Map.Entry<String, Double> entry2 : entry1.getValue().entrySet()) {
+                    String categoria2 = entry2.getKey();
+                    Double fattore = entry2.getValue();
+                    writer.write(categoria1 + " -> " + categoria2 + ": fattore = " + fattore + "\n");
+                }
+            }
+            System.out.println("Salvataggio degli scambi completato.");
+        } catch (IOException e) {
+            System.out.println("Errore durante il salvataggio degli scambi: " + e.getMessage());
+        }
+    }
 }

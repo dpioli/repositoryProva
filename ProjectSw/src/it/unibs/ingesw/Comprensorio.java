@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Comprensorio {
 	
-	
 	private String nome;
     private Set<String> comuni;
 

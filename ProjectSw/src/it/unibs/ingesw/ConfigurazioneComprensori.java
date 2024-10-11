@@ -30,7 +30,7 @@ public class ConfigurazioneComprensori {
         return document;
     }
     public ConfigurazioneComprensori(String nomeFile) throws TransformerConfigurationException, TransformerFactoryConfigurationError, TransformerException {
-   	 document = costruisciDocumento(nomeFile);
+   	 	document = costruisciDocumento(nomeFile);
         salvaModifiche(nomeFile); 
     }
     /***
@@ -76,7 +76,7 @@ public class ConfigurazioneComprensori {
      * Funzione che verifica se il Comprensorio che si vuole inserire è già presente o meno nella NodeList di comprensori.
      * @param comprensorioDaTrovare
      * @param comprensori
-     * @return trie se è già presente.
+     * @return true se è già presente.
      */
 	public boolean ePresenteComprensorio(String comprensorioDaTrovare, NodeList comprensori) {
 		for (int i = 0; i < comprensori.getLength(); i++) {

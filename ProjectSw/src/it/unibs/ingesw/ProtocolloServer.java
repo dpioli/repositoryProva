@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ProtocolloServer implements Runnable {
 	
 	private ArrayList<ProtocolloServer> listaUtenti = new ArrayList<>();
-	public ArrayList<Comune> compensorioGeografico= new ArrayList<>();
+	public ArrayList<Comprensorio> compensorioGeografico= new ArrayList<>();
 	private ArrayList<Categoria> categorie = new ArrayList<>();
 	//private ArrayList<Scambio> listaUtenti = new ArrayList<>();
 	private Socket cliente;

@@ -3,36 +3,38 @@ package it.unibs.ingesw;
 import java.util.*;
 
 public class ComprensorioGeografico {
-	private String nome;
-    private List<Comune> comuni;
+	
+	    private String nome;
+	    private Set<Comune> comuni;
 
-    public ComprensorioGeografico(String nome) {
-        this.nome = nome;
-        this.comuni = new ArrayList<>();
-    }
+	    public ComprensorioGeografico(String nome) {
+	        this.nome = nome;
+	        this.comuni = new HashSet<>();
+	    }
 
-    public void aggiungiComune(Comune comune) {
-        comuni.add(comune);
-    }
+	    public void aggiungiComune(String comune) {
+	    	if(!contieneComune(comune))
+	    		comuni.add(new Comune(comune));
+	    	else 
+	    		System.out.println("Comune già presente.");
+	    }
 
-    public boolean contieneComune(Comune comune) {
-        return comuni.contains(comune);
-    }
+		public void rimuoviComune(String comune) {
+			if(contieneComune(comune))
+				comuni.remove(new Comune(comune));
+			else
+				System.out.println("il comune che stai cercando di eliminare non esiste.");
+	    }
 
-    public String getNome() {
-        return nome;
-    }
-    
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	    public boolean contieneComune(String comune) {
+	    	Comune daCercare = new Comune(comune);
+	    	return comuni.contains(daCercare);
+	    }
+	    public Set<Comune> getComuni() {
+	    	return comuni;
+	    }
 
-    public List<Comune> getComuni() {
-        return comuni;
-    }
-    
-    public void setComuni(List<Comune> comuni) {
-        this.comuni = comuni;
-    }
-
+	    public String getNome() {
+	        return nome;
+	    }
 }

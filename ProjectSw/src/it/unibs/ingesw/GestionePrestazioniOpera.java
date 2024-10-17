@@ -7,7 +7,7 @@ import java.util.*;
 public class GestionePrestazioniOpera {
     private Map<String, Gerarchia> gerarchie;
     private Set<String> nomiCategorieFoglia;
-    private Map<String, Comprensorio> comprensori;
+    private Map<String, ComprensorioGeografico> comprensori;
     private Map<String, Map<String, Double>> fattoriConversione;
    
     public GestionePrestazioniOpera() {
@@ -65,18 +65,23 @@ public class GestionePrestazioniOpera {
         return nomiCategorieFoglia.add(nome);  // Ritorna false se già esistente
     }
 
-    // Aggiunta di un comprensorio geografico
-    public boolean aggiungiComprensorio(Comprensorio comprensorio) {
-        if (comprensori.containsKey(comprensorio.getNome())) {
-            return false;  // Comprensorio già esistente
-        }
-        comprensori.put(comprensorio.getNome(), comprensorio);
-        return true;
+    // verifica presenza di un comprensorio geografico
+    public boolean ePresenteComprensorio(String comprensorio) {
+        if (comprensori.containsKey(comprensorio))
+            return true;  // Comprensorio già esistente
+        return false;
+    }
+    
+    public void aggiungiComprensorio(String comprensorio) {
+    	if (!ePresenteComprensorio(comprensorio))
+    		comprensori.put(comprensorio, new ComprensorioGeografico(comprensorio));
+    	else 
+    		System.out.println("Esiste già un comprensorio geografico chiamato cosi.");
     }
 
     // Verifica se un comune appartiene a un comprensorio
     public boolean comuneInComprensorio(String nomeComprensorio, String comune) {
-        Comprensorio comprensorio = comprensori.get(nomeComprensorio);
+    	ComprensorioGeografico comprensorio = comprensori.get(nomeComprensorio);
         return comprensorio != null && comprensorio.contieneComune(comune);
     }
 
@@ -100,6 +105,20 @@ public class GestionePrestazioniOpera {
         } catch (IOException e) {
             System.out.println("Errore durante il salvataggio delle gerarchie: " + e.getMessage());
         }
+    }
+    public void salvaCompresori(String filePath) {
+    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+    		for (ComprensorioGeografico c : comprensori.values()) {
+    			writer.write("Comprensorio: " + c.getNome() + "\n");
+    			for(Comune comune : c.getComuni()) {
+        			writer.write("Comune: " + comune.getNome() + "\n");
+    			}
+    			writer.write("\n");
+    		}
+    		System.out.println("Salvataggio dei comprensori completato.");
+    	} catch (IOException e) {
+    		System.out.println("Errore durante il salvataggio dei comprensori: " + e.getMessage());
+    	}
     }
 
     // Metodo ricorsivo per salvare la struttura delle categorie
